@@ -1,12 +1,19 @@
 package com.emailclue.api;
 
-import com.emailclue.api.model.response.EmailSent;
+import com.emailclue.api.model.response.Clue;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.Test;
 
-import static com.emailclue.api.EmailClue.*;
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.emailclue.api.EmailClue.configuration;
+import static com.emailclue.api.EmailClue.email;
+import static com.emailclue.api.EmailClue.emailClueClient;
+import static com.emailclue.api.Util.fixture;
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
 
 public class EmailClueValidateTest {
@@ -28,20 +35,19 @@ public class EmailClueValidateTest {
     }
 
 
+    @Test
     public void canValidateEmail() {
 
-        stubFor(post(urlEqualTo("/email/send"))
+        stubFor(post(urlEqualTo("/email/test@example.com/status"))
                 .willReturn(aResponse()
-                        .withBody("{}")));
+                        .withHeader("Content-Type", "application/json")
+                        .withBody(fixture("response/validation.json"))));
 
-        EmailSent emailSent = emailClueClient.sendEmail(
-                fromTemplate("TEMPLATE101")
-                        .to("dj.mabbett@gmail.com")
-                        .cc("triumph_2500@hotmail.com")
-                        .subject("Test Email")
-                        .data(templateData()));
+        Clue validationResult = emailClueClient.validate(
+                email("test@example.com")
+        );
 
-
+//        assertThat(validationResult)
 //        assertThat()
     }
 }

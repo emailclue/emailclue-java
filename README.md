@@ -21,7 +21,9 @@ private final EmailClue emailClueClient = emailClueClient("12873782347TOKEN"));
 Validating an email
 -------------------
 ```java
-
+Clue validationResult = emailClueClient.validate(
+        email("test@example.com")
+);
 ```
 
 

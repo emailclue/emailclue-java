@@ -31,7 +31,7 @@ public class EmailClue {
 
 
     // Operations
-    public static Clue validate(ValidationBuilder validationBuilder) {
+    public Clue validate(ValidationBuilder validationBuilder) {
         return validationBuilder.invoke();
     }
 
@@ -55,6 +55,10 @@ public class EmailClue {
 
     public static EmailClueConfiguration.Builder configuration() {
         return EmailClueConfiguration.configuration();
+    }
+
+    public static ValidationBuilder email(String email) {
+        return ValidationBuilder.email(email);
     }
 
 
