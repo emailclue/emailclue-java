@@ -1,25 +1,46 @@
 package com.emailclue.api;
 
-import com.emailclue.api.builder.SendEmailBuilder;
-import com.emailclue.api.builder.TemplateDataBuilder;
+import com.emailclue.api.builder.action.SendEmailBuilder;
+import com.emailclue.api.builder.action.ValidationBuilder;
+import com.emailclue.api.builder.data.RecipientBuilder;
+import com.emailclue.api.builder.data.TemplateDataBuilder;
+import com.emailclue.api.model.response.Clue;
 import com.emailclue.api.model.response.EmailSent;
 
 public class EmailClue {
 
-    public final String API_TOKEN;
+    private final EmailClueConfiguration configuration;
 
-    private EmailClue(String api_token) {
-        API_TOKEN = api_token;
+    private EmailClue(EmailClueConfiguration configuration) {
+        this.configuration = configuration;
     }
+//    public final String API_TOKEN;
+
+//    private EmailClue(String api_token) {
+//        API_TOKEN = api_token;
+//    }
+
 
     public static EmailClue emailClueClient(String apiKey) {
-        return new EmailClue(apiKey);
+        return emailClueClient(EmailClueConfiguration.configuration().apiKey(apiKey));
+    }
+
+    public static EmailClue emailClueClient(EmailClueConfiguration.Builder configuration) {
+        return new EmailClue(configuration.build());
+    }
+
+
+    // Operations
+    public static Clue validate(ValidationBuilder validationBuilder) {
+        return validationBuilder.invoke();
     }
 
     public EmailSent sendEmail(SendEmailBuilder sendEmailBuilder) {
         return sendEmailBuilder.invoke();
     }
 
+
+    // Builders
     public static SendEmailBuilder fromTemplate(String templateId) {
         return SendEmailBuilder.fromTemplate(templateId);
     }
@@ -27,5 +48,14 @@ public class EmailClue {
     public static TemplateDataBuilder templateData() {
         return TemplateDataBuilder.empty();
     }
+
+    public static RecipientBuilder recipient() {
+        return RecipientBuilder.recipient();
+    }
+
+    public static EmailClueConfiguration.Builder configuration() {
+        return EmailClueConfiguration.configuration();
+    }
+
 
 }

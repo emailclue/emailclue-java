@@ -1,4 +1,4 @@
-package com.emailclue.api.builder;
+package com.emailclue.api.builder.data;
 
 public class TemplateDataBuilder {
 
