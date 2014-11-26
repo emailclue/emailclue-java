@@ -35,5 +35,6 @@ emailClueClient.sendEmail(
                 .to("dj.mabbett@gmail.com")
                 .cc("triumph_2500@hotmail.com")
                 .subject("Test Email")
-                .data(templateData()))
+                .data(templateData())
+);
 ```
