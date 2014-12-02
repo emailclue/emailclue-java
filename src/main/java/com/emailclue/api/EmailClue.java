@@ -9,9 +9,9 @@ import com.emailclue.api.model.response.EmailSent;
 
 public class EmailClue {
 
-    private final EmailClueConfiguration configuration;
+    private final EmailClueConfig configuration;
 
-    private EmailClue(EmailClueConfiguration configuration) {
+    private EmailClue(EmailClueConfig configuration) {
         this.configuration = configuration;
     }
 //    public final String API_TOKEN;
@@ -22,10 +22,10 @@ public class EmailClue {
 
 
     public static EmailClue emailClueClient(String apiKey) {
-        return emailClueClient(EmailClueConfiguration.configuration().apiKey(apiKey));
+        return emailClueClient(EmailClueConfig.configuration().apiKey(apiKey));
     }
 
-    public static EmailClue emailClueClient(EmailClueConfiguration.Builder configuration) {
+    public static EmailClue emailClueClient(EmailClueConfig.Builder configuration) {
         return new EmailClue(configuration.build());
     }
 
@@ -53,8 +53,8 @@ public class EmailClue {
         return RecipientBuilder.recipient();
     }
 
-    public static EmailClueConfiguration.Builder configuration() {
-        return EmailClueConfiguration.configuration();
+    public static EmailClueConfig.Builder configuration() {
+        return EmailClueConfig.configuration();
     }
 
     public static ValidationBuilder email(String email) {

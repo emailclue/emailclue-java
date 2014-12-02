@@ -1,11 +1,11 @@
 package com.emailclue.api;
 
-public class EmailClueConfiguration {
+public class EmailClueConfig {
 
     public final String host;
     public final String apiKey;
 
-    private EmailClueConfiguration(Builder builder) {
+    private EmailClueConfig(Builder builder) {
         host = builder.host;
         apiKey = builder.apiKey;
     }
@@ -33,8 +33,8 @@ public class EmailClueConfiguration {
             return this;
         }
 
-        public EmailClueConfiguration build() {
-            return new EmailClueConfiguration(this);
+        public EmailClueConfig build() {
+            return new EmailClueConfig(this);
         }
     }
 }
