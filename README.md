@@ -3,6 +3,8 @@ emailclue-java
 
 Java Client Library
 
+[![Build Status](https://travis-ci.org/emailclue/emailclue-java.svg)](https://travis-ci.org/emailclue/emailclue-java)
+
 Create The Client
 -----------------
 
