@@ -1,16 +1,20 @@
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'maven'
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+group = 'emailclue.com'
+version = '0.1-SNAPSHOT'
 
-version = '1.0'
+defaultTasks 'build'
+
+sourceCompatibility = JavaVersion.VERSION_1_6
+targetCompatibility = JavaVersion.VERSION_1_6
 
 
 idea {
     project {
-        jdkName = '1.8'
-        languageLevel = '1.8'
+        jdkName = '1.6'
+        languageLevel = '1.6'
     }
 
     module {
