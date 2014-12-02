@@ -9,7 +9,7 @@ Create The Client
 Add the following static import to use our fluent API
 
 ```java
-import static com.emailclue.api.EmailClue.*
+import static com.emailclue.api.EmailClue.*;
 ```
 
 Create an instance of the (thread safe) Client
