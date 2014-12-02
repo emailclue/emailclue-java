@@ -19,8 +19,8 @@ public class SendEmailBuilder {
 
     private final Source source;
     private String subject = "";
-    private final List<Recipient> to = new LinkedList<>();
-    private final List<Recipient> cc = new LinkedList<>();
+    private final List<Recipient> to = new LinkedList<Recipient>();
+    private final List<Recipient> cc = new LinkedList<Recipient>();
     private TemplateDataBuilder dataBuilder;
 
     private SendEmailBuilder(Source source) {
