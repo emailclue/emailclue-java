@@ -23,14 +23,14 @@ import static com.emailclue.api.EmailClue.*;
 
 Create an instance of the (thread safe) Client
 ```java
-private final EmailClue emailClueClient = emailClueClient("12873782347TOKEN"));
+private final EmailClue emailClue = emailClueClient("12873782347TOKEN"));
 ```
 
 
 Validating an email
 -------------------
 ```java
-Clue validationResult = emailClueClient.validate(
+Clue validationResult = emailClue.validate(
         email("test@example.com")
 );
 ```
@@ -39,7 +39,7 @@ Clue validationResult = emailClueClient.validate(
 Sending email
 -------------
 ```java
-emailClueClient.sendEmail(
+emailClue.sendEmail(
         fromTemplate("TEMPLATE101")
                 .to("dj.mabbett@gmail.com")
                 .cc("triumph_2500@hotmail.com")
