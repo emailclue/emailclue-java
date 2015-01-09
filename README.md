@@ -5,6 +5,13 @@ Java Client Library
 
 [![Build Status](https://travis-ci.org/emailclue/emailclue-java.svg)](https://travis-ci.org/emailclue/emailclue-java)
 
+Dependencies
+------------
+
+Add the emailclue-java library and it's dependencies to your project
+
+TODO maven central coordinates
+
 Create The Client
 -----------------
 
@@ -18,11 +25,6 @@ Create an instance of the (thread safe) Client
 ```java
 private final EmailClue emailClueClient = emailClueClient("12873782347TOKEN"));
 ```
-
-
-
-
-
 
 
 Validating an email
