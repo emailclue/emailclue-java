@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Rule;
 
 import static com.emailclue.api.EmailClue.configuration;
-import static com.emailclue.api.EmailClue.emailClueClient;
 import static com.emailclue.api.EmailClue.fromTemplate;
 import static com.emailclue.api.EmailClue.templateData;
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
@@ -17,7 +16,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 public class EmailClueSendTest {
 
 
-    private final EmailClue emailClueClient = emailClueClient(
+    private final EmailClue emailClueClient = EmailClue.emailClue(
             configuration()
                     .apiKey("12873782347TOKEN")
                     .host("http://localhost:8089")

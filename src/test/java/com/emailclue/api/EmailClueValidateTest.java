@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import static com.emailclue.api.EmailClue.configuration;
 import static com.emailclue.api.EmailClue.email;
-import static com.emailclue.api.EmailClue.emailClueClient;
 import static com.emailclue.api.Util.fixture;
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
@@ -18,7 +17,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 
 public class EmailClueValidateTest {
 
-    private final EmailClue emailClueClient = emailClueClient(
+    private final EmailClue emailClueClient = EmailClue.emailClue(
             configuration()
                     .apiKey("12873782347TOKEN")
                     .host("http://localhost:8089")

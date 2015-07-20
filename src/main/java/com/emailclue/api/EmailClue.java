@@ -21,11 +21,11 @@ public class EmailClue {
 //    }
 
 
-    public static EmailClue emailClueClient(String apiKey) {
-        return emailClueClient(EmailClueConfig.configuration().apiKey(apiKey));
+    public static EmailClue emailClue(String apiKey) {
+        return emailClue(EmailClueConfig.configuration().apiKey(apiKey));
     }
 
-    public static EmailClue emailClueClient(EmailClueConfig.Builder configuration) {
+    public static EmailClue emailClue(EmailClueConfig.Builder configuration) {
         return new EmailClue(configuration.build());
     }
 
