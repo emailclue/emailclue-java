@@ -7,6 +7,6 @@ public enum ErrorType {
     MISSING_AT,
     DNS,
     MAIL_SERVER,
-    THROWAWAY_EMAIL
+    DISPOSABLE_EMAIL
 
 }
