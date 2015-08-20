@@ -32,7 +32,7 @@ public class EmailClue {
 
     // Operations
     public Clue validate(ValidationBuilder validationBuilder) {
-        return validationBuilder.invoke();
+        return validationBuilder.invoke(configuration);
     }
 
     public EmailSent sendEmail(SendEmailBuilder sendEmailBuilder) {

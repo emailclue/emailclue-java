@@ -19,16 +19,21 @@ public class Clue {
     private final long credits;
     private final ErrorType errorType;
     private final List<String> didYouMean;
+    private final EmailProvider emailProvider;
 
     @JsonCreator
-    public Clue(@JsonProperty("status") final Status status,
-                @JsonProperty("credits") long credits,
-                @JsonProperty("errorType") final ErrorType errorType,
-                @JsonProperty("didYouMean") final List<String> didYouMean) {
+    public Clue(
+            @JsonProperty("status") final Status status,
+            @JsonProperty("credits") long credits,
+            @JsonProperty("errorType") final ErrorType errorType,
+            @JsonProperty("didYouMean") final List<String> didYouMean,
+            @JsonProperty("emailProvider") final EmailProvider emailProvider
+    ) {
         this.status = status;
         this.credits = credits;
         this.errorType = errorType;
         this.didYouMean = didYouMean;
+        this.emailProvider = emailProvider;
     }
 
     @JsonProperty("status")
@@ -56,6 +61,10 @@ public class Clue {
         return ACCEPTABLE_STATUS.contains(status);
     }
 
+    public EmailProvider getEmailProvider() {
+        return emailProvider;
+    }
+
     @Override
     public String toString() {
         return "Clue{" +
@@ -63,6 +72,7 @@ public class Clue {
                 ", credits=" + credits +
                 ", errorType=" + errorType +
                 ", didYouMean=" + didYouMean +
+                ", emailProvider=" + emailProvider +
                 '}';
     }
 }

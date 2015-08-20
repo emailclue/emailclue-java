@@ -23,7 +23,7 @@ import static com.emailclue.api.EmailClue.*;
 
 Create an instance of the (thread safe) Client
 ```java
-private final EmailClue emailClue = emailClueClient("12873782347TOKEN"));
+private final EmailClue emailClue = emailClue("12873782347TOKEN");
 ```
 
 
