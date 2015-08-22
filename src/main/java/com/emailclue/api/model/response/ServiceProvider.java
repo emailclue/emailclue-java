@@ -3,14 +3,14 @@ package com.emailclue.api.model.response;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class EmailProvider {
+public class ServiceProvider {
 
     private final String name;
     private final String loginURL;
     private final String imageURL;
 
     @JsonCreator
-    public EmailProvider(
+    public ServiceProvider(
             @JsonProperty("name") String name,
             @JsonProperty("loginURL") String loginURL,
             @JsonProperty("imageURL") String imageURL
