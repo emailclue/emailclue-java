@@ -8,12 +8,12 @@ import java.util.Map;
 
 public class EmailSend {
 
-    public final List<EmailAddress> to;
-    public final List<EmailAddress> cc;
-    public final List<EmailAddress> bcc;
-    public final String subject;
-    public final List<EmailAttachment> attachments;
-    public final Map<String, Object> data;
+    private final List<EmailAddress> to;
+    private final List<EmailAddress> cc;
+    private final List<EmailAddress> bcc;
+    private final String subject;
+    private final List<EmailAttachment> attachments;
+    private final Map<String, Object> data;
 
     @JsonCreator
     public EmailSend(
@@ -30,5 +30,29 @@ public class EmailSend {
         this.subject = subject;
         this.attachments = attachments;
         this.data = data;
+    }
+
+    public List<EmailAddress> getTo() {
+        return to;
+    }
+
+    public List<EmailAddress> getCc() {
+        return cc;
+    }
+
+    public List<EmailAddress> getBcc() {
+        return bcc;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public List<EmailAttachment> getAttachments() {
+        return attachments;
+    }
+
+    public Map<String, Object> getData() {
+        return data;
     }
 }
