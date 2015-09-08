@@ -16,7 +16,6 @@ public class Clue {
     private static final EnumSet<Status> ACCEPTABLE_STATUS = EnumSet.of(VALID, UNKNOW);
 
     private final Status status;
-    private final long credits;
     private final ErrorType errorType;
     private final List<String> didYouMean;
     private final EmailProvider emailProvider;
@@ -24,13 +23,11 @@ public class Clue {
     @JsonCreator
     public Clue(
             @JsonProperty("status") final Status status,
-            @JsonProperty("credits") long credits,
             @JsonProperty("errorType") final ErrorType errorType,
             @JsonProperty("didYouMean") final List<String> didYouMean,
             @JsonProperty("emailProvider") final EmailProvider emailProvider
     ) {
         this.status = status;
-        this.credits = credits;
         this.errorType = errorType;
         this.didYouMean = didYouMean;
         this.emailProvider = emailProvider;
@@ -39,11 +36,6 @@ public class Clue {
     @JsonProperty("status")
     public Status getStatus() {
         return status;
-    }
-
-    @JsonProperty("credits")
-    public long getCredits() {
-        return credits;
     }
 
     @JsonProperty("errorType")
@@ -69,7 +61,6 @@ public class Clue {
     public String toString() {
         return "Clue{" +
                 "status=" + status +
-                ", credits=" + credits +
                 ", errorType=" + errorType +
                 ", didYouMean=" + didYouMean +
                 ", emailProvider=" + emailProvider +
