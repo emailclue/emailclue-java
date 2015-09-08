@@ -2,8 +2,8 @@ package com.emailclue.api.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.istack.internal.NotNull;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +13,7 @@ public class EmailSend {
     private final List<EmailAddress> to;
     private final List<EmailAddress> cc;
     private final List<EmailAddress> bcc;
+    @NotNull
     private final EmailAddress from;
     private final String subject;
     private final List<EmailAttachment> attachments;
