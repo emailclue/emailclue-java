@@ -21,6 +21,7 @@ public class SendEmailBuilder {
     private String subject = "";
     private final List<Recipient> to = new LinkedList<Recipient>();
     private final List<Recipient> cc = new LinkedList<Recipient>();
+    private final List<Recipient> bcc = new LinkedList<Recipient>();
     private TemplateDataBuilder dataBuilder;
 
     private SendEmailBuilder(Source source) {
@@ -32,20 +33,72 @@ public class SendEmailBuilder {
         return new SendEmailBuilder(Source.TEMPLATE);
     }
 
-    public SendEmailBuilder to(String email) {
-        to(recipient().address(email));
+    // to
+    public SendEmailBuilder to(RecipientBuilder... recipients) {
+        for (RecipientBuilder recipient : recipients) {
+            to.add(recipient.build());
+        }
         return this;
     }
 
-    public SendEmailBuilder to(RecipientBuilder recipient) {
-        to.add(recipient.build());
+    public SendEmailBuilder to(String... emails) {
+        for (String email : emails) {
+            to(recipient().address(email));
+        }
         return this;
     }
 
-    public SendEmailBuilder cc(String email) {
-        cc.add(recipient().address(email).build());
+    public SendEmailBuilder to(Iterable<String> emails) {
+        for (String email : emails) {
+            to(recipient().address(email));
+        }
         return this;
     }
+
+    // cc
+    public SendEmailBuilder cc(RecipientBuilder... recipients) {
+        for (RecipientBuilder recipient : recipients) {
+            cc.add(recipient.build());
+        }
+        return this;
+    }
+
+    public SendEmailBuilder cc(String... emails) {
+        for (String email : emails) {
+            cc(recipient().address(email));
+        }
+        return this;
+    }
+
+    public SendEmailBuilder cc(Iterable<String> emails) {
+        for (String email : emails) {
+            cc(recipient().address(email));
+        }
+        return this;
+    }
+
+    // bcc
+    public SendEmailBuilder bcc(RecipientBuilder... recipients) {
+        for (RecipientBuilder recipient : recipients) {
+            bcc.add(recipient.build());
+        }
+        return this;
+    }
+
+    public SendEmailBuilder bcc(String... emails) {
+        for (String email : emails) {
+            bcc(recipient().address(email));
+        }
+        return this;
+    }
+
+    public SendEmailBuilder bcc(Iterable<String> emails) {
+        for (String email : emails) {
+            bcc(recipient().address(email));
+        }
+        return this;
+    }
+
 
     public SendEmailBuilder subject(String subject) {
         this.subject = subject;

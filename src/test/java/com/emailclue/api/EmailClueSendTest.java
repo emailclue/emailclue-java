@@ -32,7 +32,6 @@ public class EmailClueSendTest {
 
     }
 
-
     public void canSendEmail() {
 
         stubFor(post(urlEqualTo("/email/send"))
@@ -46,5 +45,7 @@ public class EmailClueSendTest {
                         .subject("Test Email")
                         .data(templateData()));
     }
+
+
 
 }
