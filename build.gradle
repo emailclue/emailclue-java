@@ -7,14 +7,14 @@ version = '0.1-SNAPSHOT'
 
 defaultTasks 'build'
 
-sourceCompatibility = JavaVersion.VERSION_1_6
-targetCompatibility = JavaVersion.VERSION_1_6
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
 
 
 idea {
     project {
-        jdkName = '1.6'
-        languageLevel = '1.6'
+        jdkName = '1.7'
+        languageLevel = '1.7'
     }
 
     module {
