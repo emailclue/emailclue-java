@@ -1,4 +1,4 @@
-package com.emailclue.api.builder.data;
+package com.emailclue.api;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,5 +17,9 @@ public class TemplateDataBuilder {
 
     public static TemplateDataBuilder map(Map<String, Object> data) {
         return new TemplateDataBuilder(data);
+    }
+
+    /* protected */ Map<String, Object> build() {
+        return data;
     }
 }

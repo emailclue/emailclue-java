@@ -1,6 +1,5 @@
-package com.emailclue.api.builder.action;
+package com.emailclue.api;
 
-import com.emailclue.api.EmailClueConfig;
 import com.emailclue.api.model.response.Clue;
 
 import javax.ws.rs.core.HttpHeaders;

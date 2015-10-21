@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.EnumSet;
 import java.util.List;
 
-import static com.emailclue.api.model.response.Status.VALID;
 import static com.emailclue.api.model.response.Status.UNKNOW;
+import static com.emailclue.api.model.response.Status.VALID;
 
 
 public class Clue {

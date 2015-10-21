@@ -1,0 +1,19 @@
+{
+  "to": [
+    {
+      "address": "recipient@example.com"
+    }
+  ],
+  "cc": [
+    {
+      "address": "cc@example.com"
+    }
+  ],
+  "bcc": [],
+  "from": {
+    "name": "Test",
+    "address": "test@example.com"
+  },
+  "subject": "Test Email",
+  "attachments": []
+}

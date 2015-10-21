@@ -4,14 +4,13 @@ import com.emailclue.api.model.response.EmailSent;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.Test;
 
 import static com.emailclue.api.EmailClue.configuration;
 import static com.emailclue.api.EmailClue.fromTemplate;
 import static com.emailclue.api.EmailClue.templateData;
-import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.post;
-import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
-import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static com.emailclue.api.Util.fixture;
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 public class EmailClueSendTest {
 
@@ -32,20 +31,24 @@ public class EmailClueSendTest {
 
     }
 
+    @Test
     public void canSendEmail() {
 
-        stubFor(post(urlEqualTo("/email/send"))
+        stubFor(post(urlEqualTo("/v1/email/send"))
                 .willReturn(aResponse()
+                        .withHeader("MediaType", "application/json")
                         .withBody("{}")));
 
-        EmailSent emailSent = emailClueClient.sendEmail(
+        emailClueClient.sendEmail(
                 fromTemplate("TEMPLATE101")
-                        .to("dj.mabbett@gmail.com")
-                        .cc("triumph_2500@hotmail.com")
+                        .to("recipient@example.com")
+                        .cc("cc@example.com")
                         .subject("Test Email")
                         .data(templateData()));
+
+        verify(postRequestedFor(urlEqualTo("/v1/email/send"))
+                .withHeader("Authorization", equalTo("Bearer 12873782347TOKEN"))
+        .withRequestBody(equalToJson(fixture("response/send.json"))));
     }
-
-
 
 }

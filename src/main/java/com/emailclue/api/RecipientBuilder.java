@@ -1,4 +1,4 @@
-package com.emailclue.api.builder.data;
+package com.emailclue.api;
 
 import com.emailclue.api.model.request.Recipient;
 
@@ -25,6 +25,6 @@ public class RecipientBuilder {
     }
 
     public Recipient build() {
-        return null;
+        return new Recipient(name, address);
     }
 }

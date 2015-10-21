@@ -1,5 +1,6 @@
 package com.emailclue.api.model;
 
+import com.emailclue.api.model.request.Recipient;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,21 +11,21 @@ import java.util.Map;
 public class EmailSend {
 
     @NotNull
-    private final List<EmailAddress> to;
-    private final List<EmailAddress> cc;
-    private final List<EmailAddress> bcc;
+    private final List<Recipient> to;
+    private final List<Recipient> cc;
+    private final List<Recipient> bcc;
     @NotNull
-    private final EmailAddress from;
+    private final Recipient from;
     private final String subject;
     private final List<EmailAttachment> attachments;
     private final Map<String, Object> data;
 
     @JsonCreator
     public EmailSend(
-            @JsonProperty("to") List<EmailAddress> to,
-            @JsonProperty("cc") List<EmailAddress> cc,
-            @JsonProperty("bcc") List<EmailAddress> bcc,
-            @JsonProperty("from") EmailAddress from,
+            @JsonProperty("to") List<Recipient> to,
+            @JsonProperty("cc") List<Recipient> cc,
+            @JsonProperty("bcc") List<Recipient> bcc,
+            @JsonProperty("from") Recipient from,
             @JsonProperty("subject") String subject,
             @JsonProperty("attachments") List<EmailAttachment> attachments,
             @JsonProperty("data") Map<String, Object> data
@@ -38,19 +39,19 @@ public class EmailSend {
         this.data = data;
     }
 
-    public List<EmailAddress> getTo() {
+    public List<Recipient> getTo() {
         return to;
     }
 
-    public List<EmailAddress> getCc() {
+    public List<Recipient> getCc() {
         return cc;
     }
 
-    public List<EmailAddress> getBcc() {
+    public List<Recipient> getBcc() {
         return bcc;
     }
 
-    public EmailAddress getFrom() {
+    public Recipient getFrom() {
         return from;
     }
 

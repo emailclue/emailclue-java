@@ -1,15 +1,21 @@
-package com.emailclue.api.builder.action;
+package com.emailclue.api;
 
-import com.emailclue.api.builder.data.RecipientBuilder;
-import com.emailclue.api.builder.data.TemplateDataBuilder;
+import com.emailclue.api.model.EmailAttachment;
+import com.emailclue.api.model.EmailSend;
 import com.emailclue.api.model.request.Recipient;
 import com.emailclue.api.model.response.EmailSent;
 
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import static com.emailclue.api.EmailClue.recipient;
+import static javax.ws.rs.client.Entity.json;
 
 public class SendEmailBuilder {
 
@@ -116,8 +122,22 @@ public class SendEmailBuilder {
         return this;
     }
 
-    public EmailSent invoke() {
-        return null;
+    /* package */ void invoke(EmailClueConfig config) {
+        Response response = config.getWebTarget()
+                .path("/email/send")
+                .request(MediaType.APPLICATION_JSON_TYPE)
+                .accept(MediaType.APPLICATION_JSON_TYPE)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + config.apiKey)
+                .post(json(build()));
+        // return response.readEntity(EmailSent.class);
+    }
+
+    private EmailSend build() {
+        return new EmailSend(
+                to, cc, bcc, new Recipient("Test", "test@example.com"),
+                subject, new ArrayList<EmailAttachment>(),
+                dataBuilder.build()
+        );
     }
 
 }
