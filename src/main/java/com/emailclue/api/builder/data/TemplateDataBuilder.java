@@ -1,12 +1,21 @@
 package com.emailclue.api.builder.data;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TemplateDataBuilder {
+    
+    private Map<String, Object> data;
 
-    private TemplateDataBuilder() {
-
+    private TemplateDataBuilder(Map<String, Object> data) {
+        data = data;
     }
 
     public static TemplateDataBuilder empty() {
-        return new TemplateDataBuilder();
+        return new TemplateDataBuilder(new HashMap<String, Object>());
+    }
+
+    public static TemplateDataBuilder map(Map<String, Object> data) {
+        return new TemplateDataBuilder(data);
     }
 }

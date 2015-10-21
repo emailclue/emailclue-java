@@ -7,6 +7,7 @@ import com.emailclue.api.model.response.EmailSent;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static com.emailclue.api.EmailClue.recipient;
 
@@ -107,6 +108,11 @@ public class SendEmailBuilder {
 
     public SendEmailBuilder data(TemplateDataBuilder dataBuilder) {
         this.dataBuilder = dataBuilder;
+        return this;
+    }
+
+    public SendEmailBuilder data(Map<String, Object> data) {
+        this.dataBuilder = TemplateDataBuilder.map(data);
         return this;
     }
 
