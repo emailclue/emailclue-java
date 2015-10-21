@@ -124,7 +124,7 @@ public class SendEmailBuilder {
 
     /* package */ void invoke(EmailClueConfig config) {
         Response response = config.getWebTarget()
-                .path("/email/send")
+                .path("/email/message/send")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .accept(MediaType.APPLICATION_JSON_TYPE)
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + config.apiKey)

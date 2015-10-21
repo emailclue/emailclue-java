@@ -34,7 +34,7 @@ public class EmailClueSendTest {
     @Test
     public void canSendEmail() {
 
-        stubFor(post(urlEqualTo("/v1/email/send"))
+        stubFor(post(urlEqualTo("/v1/email/message/send"))
                 .willReturn(aResponse()
                         .withHeader("MediaType", "application/json")
                         .withBody("{}")));
@@ -46,7 +46,7 @@ public class EmailClueSendTest {
                         .subject("Test Email")
                         .data(templateData()));
 
-        verify(postRequestedFor(urlEqualTo("/v1/email/send"))
+        verify(postRequestedFor(urlEqualTo("/v1/email/message/send"))
                 .withHeader("Authorization", equalTo("Bearer 12873782347TOKEN"))
         .withRequestBody(equalToJson(fixture("response/send.json"))));
     }
