@@ -8,7 +8,7 @@ public class TemplateDataBuilder {
     private Map<String, Object> data;
 
     private TemplateDataBuilder(Map<String, Object> data) {
-        data = data;
+        this.data = data;
     }
 
     public static TemplateDataBuilder empty() {
