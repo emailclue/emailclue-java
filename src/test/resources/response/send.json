@@ -15,5 +15,8 @@
     "address": "test@example.com"
   },
   "subject": "Test Email",
-  "attachments": []
+  "attachments": [],
+  "data": {
+    "name": "Homer"
+  }
 }

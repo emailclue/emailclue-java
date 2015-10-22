@@ -1,16 +1,24 @@
 package com.emailclue.api;
 
-import com.emailclue.api.model.response.EmailSent;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import com.google.common.collect.ImmutableMap;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.Map;
+
 import static com.emailclue.api.EmailClue.configuration;
 import static com.emailclue.api.EmailClue.fromTemplate;
-import static com.emailclue.api.EmailClue.templateData;
 import static com.emailclue.api.Util.fixture;
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalToJson;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.verify;
 
 public class EmailClueSendTest {
 
@@ -39,12 +47,16 @@ public class EmailClueSendTest {
                         .withHeader("MediaType", "application/json")
                         .withBody("{}")));
 
+        Map<String, Object> templateData = ImmutableMap.<String, Object>builder()
+                .put("name", "Homer")
+                .build();
+
         emailClueClient.sendEmail(
                 fromTemplate("TEMPLATE101")
                         .to("recipient@example.com")
                         .cc("cc@example.com")
                         .subject("Test Email")
-                        .data(templateData()));
+                        .data(templateData));
 
         verify(postRequestedFor(urlEqualTo("/v1/email/message/send"))
                 .withHeader("Authorization", equalTo("Bearer 12873782347TOKEN"))
