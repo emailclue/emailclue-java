@@ -1,7 +1,6 @@
 package com.emailclue.api;
 
 import com.emailclue.api.jackson.ObjectMapperProvider;
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import org.glassfish.jersey.jackson.JacksonFeature;
 
 import javax.ws.rs.client.Client;
@@ -25,7 +24,8 @@ public class EmailClueConfig {
         } else {
             this.client = defaultJerseyClient();
         }
-        userAgent = builder.userAgent;
+        String version = getClass().getPackage().getImplementationVersion();
+        userAgent = "Java EmailClue Client version " + version;
     }
 
     private Client defaultJerseyClient() {
@@ -39,6 +39,7 @@ public class EmailClueConfig {
     }
 
     public WebTarget getWebTarget() {
+        // TODO use the user agent
         return client.target(target + basePath);
     }
 
@@ -50,7 +51,6 @@ public class EmailClueConfig {
         private String basePath = "/v1";
         private String apiKey;
         private Client client;
-        private String userAgent = "EmailClue Java Client";
 
         private Builder() {
         }
@@ -72,11 +72,6 @@ public class EmailClueConfig {
 
         public Builder client(Client client) {
             this.client = client;
-            return this;
-        }
-
-        public Builder userAgent(String userAgent) {
-            this.userAgent = userAgent;
             return this;
         }
 

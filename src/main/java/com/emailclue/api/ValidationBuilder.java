@@ -1,6 +1,6 @@
 package com.emailclue.api;
 
-import com.emailclue.api.model.response.Clue;
+import com.emailclue.api.model.Clue;
 
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;

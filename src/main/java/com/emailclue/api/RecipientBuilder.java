@@ -1,6 +1,6 @@
 package com.emailclue.api;
 
-import com.emailclue.api.model.request.Recipient;
+import com.emailclue.api.model.Recipient;
 
 public class RecipientBuilder {
 

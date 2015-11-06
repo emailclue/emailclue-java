@@ -56,7 +56,13 @@ public class EmailClueSendTest {
                         .to("recipient@example.com")
                         .cc("cc@example.com")
                         .subject("Test Email")
-                        .data(templateData));
+                        .templateData(ImmutableMap.<String, Object>of(
+                                "toName", "Daniel",
+                                "contact", ImmutableMap.of(
+                                        "name", "James",
+                                        "url", "http://google.com"
+                                )
+                        )));
 
         verify(postRequestedFor(urlEqualTo("/v1/email/message/send"))
                 .withHeader("Authorization", equalTo("Bearer 12873782347TOKEN"))

@@ -1,7 +1,6 @@
 package com.emailclue.api;
 
-import com.emailclue.api.model.response.Clue;
-import com.emailclue.api.model.response.EmailSent;
+import com.emailclue.api.model.Clue;
 
 public class EmailClue {
 
@@ -38,12 +37,8 @@ public class EmailClue {
 
 
     // Builders
-    public static SendEmailBuilder fromTemplate(String templateId) {
-        return SendEmailBuilder.fromTemplate(templateId);
-    }
-
-    public static TemplateDataBuilder templateData() {
-        return TemplateDataBuilder.empty();
+    public static SendEmailFromTemplateBuilder fromTemplate(String templateId) {
+        return new SendEmailFromTemplateBuilder(templateId);
     }
 
     public static RecipientBuilder recipient() {
@@ -58,5 +53,12 @@ public class EmailClue {
         return ValidationBuilder.email(email);
     }
 
+    public static AttachmentBuilder attachment() {
+        return AttachmentBuilder.attachment();
+    }
+
+    public static AttachmentBuilder inlineAttachment() {
+        return AttachmentBuilder.inlineAttachment();
+    }
 
 }

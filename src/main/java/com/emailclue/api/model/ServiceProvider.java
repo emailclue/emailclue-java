@@ -1,4 +1,4 @@
-package com.emailclue.api.model.response;
+package com.emailclue.api.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

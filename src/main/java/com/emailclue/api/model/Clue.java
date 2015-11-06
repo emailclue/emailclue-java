@@ -1,4 +1,4 @@
-package com.emailclue.api.model.response;
+package com.emailclue.api.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -7,13 +7,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.EnumSet;
 import java.util.List;
 
-import static com.emailclue.api.model.response.Status.UNKNOW;
-import static com.emailclue.api.model.response.Status.VALID;
-
 
 public class Clue {
 
-    private static final EnumSet<Status> ACCEPTABLE_STATUS = EnumSet.of(VALID, UNKNOW);
+    private static final EnumSet<Status> ACCEPTABLE_STATUS = EnumSet.of(Status.VALID, Status.UNKNOW);
 
     private final Status status;
     private final ErrorType errorType;

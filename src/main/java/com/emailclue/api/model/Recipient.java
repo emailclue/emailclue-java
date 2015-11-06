@@ -1,6 +1,5 @@
-package com.emailclue.api.model.request;
+package com.emailclue.api.model;
 
-import com.emailclue.api.RecipientBuilder;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

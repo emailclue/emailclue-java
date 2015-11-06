@@ -1,4 +1,4 @@
-package com.emailclue.api.model.response;
+package com.emailclue.api.model;
 
 public enum Status {
 

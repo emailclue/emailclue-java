@@ -1,22 +1,19 @@
 {
-  "to": [
-    {
-      "address": "recipient@example.com"
-    }
-  ],
-  "cc": [
-    {
-      "address": "cc@example.com"
-    }
-  ],
+  "to": [ { "address": "recipient@example.com" } ],
+  "cc": [ { "address": "cc@example.com" } ],
   "bcc": [],
-  "from": {
-    "name": "Test",
-    "address": "test@example.com"
-  },
+  "fromName": "no-reply",
   "subject": "Test Email",
   "attachments": [],
-  "data": {
-    "name": "Homer"
+  "template": {
+    "type": "stored",
+    "templateName": "TEMPLATE101",
+    "data": {
+      "contact": {
+        "name": "James",
+        "url": "http://google.com"
+      },
+      "toName": "Daniel"
+    }
   }
 }

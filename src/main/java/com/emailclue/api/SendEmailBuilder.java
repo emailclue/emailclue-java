@@ -1,11 +1,9 @@
 package com.emailclue.api;
 
-import com.emailclue.api.model.EmailAttachment;
+import com.emailclue.api.model.AbstractEmailAttachment;
 import com.emailclue.api.model.EmailSend;
-import com.emailclue.api.model.request.Recipient;
-import com.emailclue.api.model.response.EmailSent;
+import com.emailclue.api.model.Recipient;
 
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -19,25 +17,30 @@ import static javax.ws.rs.client.Entity.json;
 
 public class SendEmailBuilder {
 
+    public SendEmailBuilder templateData(Map<String, Object> data) {
+        templateBuilder.data = data;
+        return this;
+    }
+
     private static enum Source {
         TEMPLATE,
         PROVIDED
     }
 
-    private final Source source;
     private String subject = "";
-    private final List<Recipient> to = new LinkedList<Recipient>();
-    private final List<Recipient> cc = new LinkedList<Recipient>();
-    private final List<Recipient> bcc = new LinkedList<Recipient>();
-    private TemplateDataBuilder dataBuilder;
+    private final List<Recipient> to = new LinkedList<>();
+    private final List<Recipient> cc = new LinkedList<>();
+    private final List<Recipient> bcc = new LinkedList<>();
+    private final List<Recipient> replyTo = new LinkedList<>();
+    private final String fromName = "no-reply";
+    private List<AttachmentBuilder> attachmentBuilder = new LinkedList<>();
+    protected TemplateBuilder templateBuilder;
 
-    private SendEmailBuilder(Source source) {
-        this.source = source;
+    public SendEmailBuilder() {
     }
 
-
-    public static SendEmailBuilder fromTemplate(String templateId) {
-        return new SendEmailBuilder(Source.TEMPLATE);
+    public static SendEmailFromTemplateBuilder fromTemplate(String templateId) {
+        return new SendEmailFromTemplateBuilder(templateId);
     }
 
     // to
@@ -52,6 +55,11 @@ public class SendEmailBuilder {
         for (String email : emails) {
             to(recipient().address(email));
         }
+        return this;
+    }
+
+    public SendEmailBuilder attachment(AttachmentBuilder attachment) {
+        this.attachmentBuilder.add(attachment);
         return this;
     }
 
@@ -112,16 +120,6 @@ public class SendEmailBuilder {
         return this;
     }
 
-    public SendEmailBuilder data(TemplateDataBuilder dataBuilder) {
-        this.dataBuilder = dataBuilder;
-        return this;
-    }
-
-    public SendEmailBuilder data(Map<String, Object> data) {
-        this.dataBuilder = TemplateDataBuilder.map(data);
-        return this;
-    }
-
     /* package */ void invoke(EmailClueConfig config) {
         Response response = config.getWebTarget()
                 .path("/email/message/send")
@@ -133,10 +131,15 @@ public class SendEmailBuilder {
     }
 
     private EmailSend build() {
+        List<AbstractEmailAttachment> attachments = new ArrayList<>();
+        for (AttachmentBuilder attachBuilder : attachmentBuilder) {
+            attachments.add(attachBuilder.build());
+        }
+
         return new EmailSend(
-                to, cc, bcc, new Recipient("Test", "test@example.com"),
-                subject, new ArrayList<EmailAttachment>(),
-                dataBuilder.build()
+                to, cc, bcc, replyTo, fromName,
+                subject, attachments,
+                templateBuilder.build()
         );
     }
 
