@@ -2,11 +2,11 @@ package com.emailclue.api;
 
 import com.emailclue.api.model.AbstractEmailAttachment;
 import com.emailclue.api.model.EmailSend;
+import com.emailclue.api.model.EmailSent;
 import com.emailclue.api.model.Recipient;
 
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -120,14 +120,15 @@ public class SendEmailBuilder {
         return this;
     }
 
-    /* package */ void invoke(EmailClueConfig config) {
-        Response response = config.getWebTarget()
+    /* package */ EmailSent invoke(EmailClueConfig config) {
+
+        return config.getWebTarget()
                 .path("/email/message/send")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .accept(MediaType.APPLICATION_JSON_TYPE)
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + config.apiKey)
-                .post(json(build()));
-        // return response.readEntity(EmailSent.class);
+                .post(json(build()), EmailSent.class);
+
     }
 
     private EmailSend build() {
