@@ -5,8 +5,10 @@ import com.emailclue.api.model.EmailSend;
 import com.emailclue.api.model.EmailSent;
 import com.emailclue.api.model.Recipient;
 
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -122,13 +124,19 @@ public class SendEmailBuilder {
 
     /* package */ EmailSent invoke(EmailClueConfig config) {
 
-        return config.getWebTarget()
+        Response response = config.getWebTarget()
                 .path("/email/message/send")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .accept(MediaType.APPLICATION_JSON_TYPE)
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + config.apiKey)
-                .post(json(build()), EmailSent.class);
+                .post(json(build()));
 
+        if (Response.Status.Family.SUCCESSFUL == response.getStatusInfo().getFamily()) {
+            return response.readEntity(EmailSent.class);
+        }
+
+        System.err.println("ERROR " + response.readEntity(String.class));
+        throw new WebApplicationException("Invalid response");
     }
 
     private EmailSend build() {
