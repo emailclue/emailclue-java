@@ -47,7 +47,7 @@ public class EmailClueSendTest {
         stubFor(post(urlEqualTo("/v1/email/message/send"))
                 .willReturn(aResponse()
                         .withHeader("MediaType", "application/json")
-                        .withBody("{}")));
+                        .withBody("{ \"messageId\": \"msg101\"}")));
 
         Map<String, Object> templateData = ImmutableMap.<String, Object>builder()
                 .put("name", "Homer")
