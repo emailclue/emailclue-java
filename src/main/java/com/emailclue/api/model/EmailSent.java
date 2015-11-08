@@ -5,15 +5,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class EmailSent {
 
-    private final String eventId;
+    private final String messageId;
 
     @JsonCreator()
-    public EmailSent(@JsonProperty("eventId") String eventId) {
-        this.eventId = eventId;
+    public EmailSent(@JsonProperty("messageId") String messageId) {
+        this.messageId = messageId;
     }
 
-    public String getEventId() {
-        return eventId;
+    public String getMessageId() {
+        return messageId;
     }
 
 }
