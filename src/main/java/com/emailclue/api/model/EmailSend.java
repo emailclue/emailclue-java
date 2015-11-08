@@ -56,6 +56,10 @@ public class EmailSend {
         return bcc;
     }
 
+    public List<Recipient> getReplyTo() {
+        return replyTo;
+    }
+
     public String getFromName() {
         return fromName;
     }
