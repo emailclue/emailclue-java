@@ -116,6 +116,13 @@ public class SendEmailBuilder {
         return this;
     }
 
+    public SendEmailBuilder replyTo(RecipientBuilder... recipients) {
+        for (RecipientBuilder recipient : recipients) {
+            replyTo.add(recipient.build());
+        }
+        return this;
+    }
+
 
     public SendEmailBuilder subject(String subject) {
         this.subject = subject;
