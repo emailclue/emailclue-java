@@ -146,7 +146,7 @@ public class SendEmailBuilder {
         throw new WebApplicationException("Invalid response");
     }
 
-    private EmailSend build() {
+    public EmailSend build() {
         List<AbstractEmailAttachment> attachments = new ArrayList<>();
         for (AttachmentBuilder attachBuilder : attachmentBuilder) {
             attachments.add(attachBuilder.build());

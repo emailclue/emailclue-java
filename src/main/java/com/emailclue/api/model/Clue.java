@@ -1,16 +1,12 @@
 package com.emailclue.api.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.EnumSet;
 import java.util.List;
 
 
 public class Clue {
-
-    private static final EnumSet<Status> ACCEPTABLE_STATUS = EnumSet.of(Status.VALID, Status.UNKNOW);
 
     private final Status status;
     private final ErrorType errorType;
@@ -43,11 +39,6 @@ public class Clue {
     @JsonProperty("didYouMean")
     public List<String> getDidYouMean() {
         return didYouMean;
-    }
-
-    @JsonIgnore
-    public boolean isAcceptable() {
-        return ACCEPTABLE_STATUS.contains(status);
     }
 
     public EmailProvider getEmailProvider() {

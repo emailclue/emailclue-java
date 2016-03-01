@@ -10,12 +10,6 @@ public class EmailClue {
         this.configuration = configuration;
 
     }
-//    public final String API_TOKEN;
-
-//    private EmailClue(String api_token) {
-//        API_TOKEN = api_token;
-//    }
-
 
     public static EmailClue emailClue(String apiKey) {
         return emailClue(EmailClueConfig.configuration().apiKey(apiKey));
@@ -33,6 +27,10 @@ public class EmailClue {
 
     public void sendEmail(SendEmailBuilder sendEmailBuilder) {
         sendEmailBuilder.invoke(configuration);
+    }
+
+    public void createAccount(String email, String captchaChallenge) {
+        throw new UnsupportedOperationException("TODO Implement");
     }
 
 
