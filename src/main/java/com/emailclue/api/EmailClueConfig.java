@@ -46,8 +46,7 @@ public class EmailClueConfig {
 
     public static final class Builder {
 
-        // TODO use https
-        private String target = "http://api.emailclue.com";
+        private String target = "https://api.emailclue.com";
         private String basePath = "/v1";
         private String apiKey;
         private Client client;
