@@ -1,6 +1,7 @@
 package com.emailclue.api;
 
 import com.emailclue.api.model.Clue;
+import com.emailclue.api.model.CreateAccountResponse;
 
 public class EmailClue {
 
@@ -29,8 +30,8 @@ public class EmailClue {
         sendEmailBuilder.invoke(configuration);
     }
 
-    public void createAccount(String email, String captchaChallenge) {
-        throw new UnsupportedOperationException("TODO Implement");
+    public CreateAccountResponse createAccount(CreateAccountBuilder createAccountBuilder) {
+        return createAccountBuilder.invoke(configuration);
     }
 
 
@@ -57,6 +58,10 @@ public class EmailClue {
 
     public static AttachmentBuilder inlineAttachment() {
         return AttachmentBuilder.inlineAttachment();
+    }
+
+    public static CreateAccountBuilder account() {
+        return CreateAccountBuilder.account();
     }
 
 }
