@@ -7,18 +7,18 @@ public class EmailClue {
 
     private final EmailClueConfig configuration;
 
-    private EmailClue(EmailClueConfig configuration) {
+    public EmailClue(EmailClueConfig configuration) {
         this.configuration = configuration;
+    }
 
+    public static EmailClue emailClue(EmailClueConfig.Builder configuration) {
+        return new EmailClue(configuration.build());
     }
 
     public static EmailClue emailClue(String apiKey) {
         return emailClue(EmailClueConfig.configuration().apiKey(apiKey));
     }
 
-    public static EmailClue emailClue(EmailClueConfig.Builder configuration) {
-        return new EmailClue(configuration.build());
-    }
 
 
     // Operations
