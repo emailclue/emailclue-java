@@ -3,7 +3,7 @@ apply plugin: 'idea'
 apply plugin: 'maven'
 
 group = 'com.emailclue'
-version = '0.1-SNAPSHOT'
+version = '0.2-SNAPSHOT'
 
 defaultTasks 'build'
 
