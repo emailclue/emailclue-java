@@ -34,6 +34,10 @@ public class EmailClue {
         return createAccountBuilder.invoke(configuration);
     }
 
+    public String ping() {
+        return new PingBuilder().invoke(configuration);
+    }
+
 
     // Builders
     public static SendEmailFromTemplateBuilder fromTemplate(String templateId) {
