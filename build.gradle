@@ -1,6 +1,21 @@
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'maven'
+buildscript {
+    repositories {
+        jcenter()
+//        maven {
+//        }
+    }
+    dependencies {
+        classpath 'net.vrallev.gradle:jarjar-gradle:1.1.0'
+    }
+}
+
+
+plugins {
+    id 'java'
+    id 'maven'
+    id 'idea'
+    id 'com.github.ben-manes.versions' version '0.15.0'
+}
 
 group = 'com.emailclue'
 version = '0.2-SNAPSHOT'
@@ -23,22 +38,11 @@ idea {
     }
 }
 
-buildscript {
-    repositories {
-        jcenter()
-//        maven {
-//        }
-    }
-    dependencies {
-        classpath 'net.vrallev.gradle:jarjar-gradle:1.1.0'
-    }
-}
-
 apply plugin: 'net.vrallev.jarjar'
 
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.0.1'
+    gradleVersion = '4.1'
 }
 
 
