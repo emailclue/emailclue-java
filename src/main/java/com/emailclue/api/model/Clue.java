@@ -12,18 +12,21 @@ public class Clue {
     private final ErrorType errorType;
     private final List<String> didYouMean;
     private final EmailProvider emailProvider;
+    private final boolean disposable;
 
     @JsonCreator
     public Clue(
             @JsonProperty("status") final Status status,
             @JsonProperty("errorType") final ErrorType errorType,
             @JsonProperty("didYouMean") final List<String> didYouMean,
-            @JsonProperty("emailProvider") final EmailProvider emailProvider
+            @JsonProperty("emailProvider") final EmailProvider emailProvider,
+            @JsonProperty("disposable") boolean disposable
     ) {
         this.status = status;
         this.errorType = errorType;
         this.didYouMean = didYouMean;
         this.emailProvider = emailProvider;
+        this.disposable = disposable;
     }
 
     @JsonProperty("status")
@@ -43,6 +46,11 @@ public class Clue {
 
     public EmailProvider getEmailProvider() {
         return emailProvider;
+    }
+
+    @JsonProperty("disposable")
+    public boolean isDisposable() {
+        return disposable;
     }
 
     @Override
