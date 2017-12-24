@@ -13,6 +13,7 @@ public class Clue {
     private final List<String> didYouMean;
     private final EmailProvider emailProvider;
     private final boolean disposable;
+    private final String normalised;
 
     @JsonCreator
     public Clue(
@@ -20,13 +21,15 @@ public class Clue {
             @JsonProperty("errorType") final ErrorType errorType,
             @JsonProperty("didYouMean") final List<String> didYouMean,
             @JsonProperty("emailProvider") final EmailProvider emailProvider,
-            @JsonProperty("disposable") boolean disposable
+            @JsonProperty("disposable") boolean disposable,
+            @JsonProperty("normalised") final String normalised
     ) {
         this.status = status;
         this.errorType = errorType;
         this.didYouMean = didYouMean;
         this.emailProvider = emailProvider;
         this.disposable = disposable;
+        this.normalised = normalised;
     }
 
     @JsonProperty("status")
@@ -51,6 +54,11 @@ public class Clue {
     @JsonProperty("disposable")
     public boolean isDisposable() {
         return disposable;
+    }
+
+    @JsonProperty("normalised")
+    public String getNormalised() {
+        return normalised;
     }
 
     @Override
